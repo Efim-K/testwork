@@ -14,13 +14,11 @@ class SalesNetworkAdmin(admin.ModelAdmin):
     list_display = (
         'id', 'name', 'network_type', 'email', 'country', 'city', 'street', 'house_number', 'get_supplier_link',
         'get_products', 'debt', 'created_at')
-    # list_display_links = ['id']
+    list_display_links = ['id', 'name']
     list_filter = ['city', 'network_type', ]
     search_fields = ['city']
     actions = ['set_clear_debt']
     filter_horizontal = ['products']
-
-    # list_select_related = ["supplier"]
 
     @admin.action(description='Очищение задолженности перед поставщиком')
     def set_clear_debt(self, request, queryset):
