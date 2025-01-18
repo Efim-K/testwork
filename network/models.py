@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 NULLABLE = {"blank": "True", "null": "True"}
 
@@ -35,11 +36,19 @@ class SalesNetwork(models.Model):
     city = models.CharField(max_length=100, verbose_name="Город", **NULLABLE)
     street = models.CharField(max_length=100, verbose_name="Улица", **NULLABLE)
     house_number = models.CharField(max_length=10, verbose_name="Номер дома", **NULLABLE)
-    products = models.ForeignKey(Product, on_delete=models.SET_NULL, verbose_name="Продукты", **NULLABLE)
+    products = models.ManyToManyField(Product, verbose_name="Продукты")
     supplier = models.ForeignKey("self", on_delete=models.SET_NULL, verbose_name="Поставщик", **NULLABLE)
     debt = models.DecimalField(default=0, max_digits=20, decimal_places=2,
                                verbose_name="Задолженность перед поставщиком")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Время создания")
+
+    def get_products(self):
+        """ Возвращает список электронных товаров, продаваемых сетью """
+        return ", ".join([str(obj) for obj in self.products.all()])
+
+    def get_supplier_url(self):
+        """ Возвращает URL поставщика """
+        return reverse('admin:network_salesnetwork_change', args=[self.id])
 
     def __str__(self):
         return self.name
