@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('network', '0002_remove_salesnetwork_products_salesnetwork_products'),
+        ("network", "0002_remove_salesnetwork_products_salesnetwork_products"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='salesnetwork',
-            name='products',
-            field=models.ManyToManyField(to='network.product', verbose_name='Продукты'),
+            model_name="salesnetwork",
+            name="products",
+            field=models.ManyToManyField(to="network.product", verbose_name="Продукты"),
         ),
     ]

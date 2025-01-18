@@ -3,11 +3,13 @@ from django.db import models
 
 
 class User(AbstractUser):
-    """ Пользователи """
+    """Пользователи"""
 
     username = None
     email = models.EmailField(unique=True, verbose_name="Email")
-    token = models.CharField(max_length=100, verbose_name="Token",  blank=True, null=True)
+    token = models.CharField(
+        max_length=100, verbose_name="Token", blank=True, null=True
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

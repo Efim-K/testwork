@@ -11,12 +11,13 @@ class SalesNetworkListApiView(generics.ListAPIView):
     queryset = SalesNetwork.objects.all()
     serializer_class = SalesNetworkSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['country']
+    search_fields = ["country"]
     permission_classes = (IsActive,)
 
 
 class SalesNetworkCreateApiView(generics.CreateAPIView):
     """Создание нового участника сети продаж"""
+
     queryset = SalesNetwork.objects.all()
     serializer_class = SalesNetworkSerializer
     permission_classes = (IsActive,)
@@ -24,6 +25,7 @@ class SalesNetworkCreateApiView(generics.CreateAPIView):
 
 class SalesNetworkRetrieveApiView(generics.RetrieveAPIView):
     """Просмотр информации о конкретном участнике сети продаж"""
+
     queryset = SalesNetwork.objects.all()
     serializer_class = SalesNetworkSerializer
     permission_classes = (IsActive,)
@@ -31,6 +33,7 @@ class SalesNetworkRetrieveApiView(generics.RetrieveAPIView):
 
 class SalesNetworkUpdateApiView(generics.UpdateAPIView):
     """Изменение информации о конкретном участнике сети продаж"""
+
     queryset = SalesNetwork.objects.all()
     serializer_class = SalesNetworkSerializer
     permission_classes = (IsActive,)
@@ -38,6 +41,7 @@ class SalesNetworkUpdateApiView(generics.UpdateAPIView):
 
 class SalesNetworkDestroyApiView(generics.DestroyAPIView):
     """Удаление участника сети продаж"""
+
     queryset = SalesNetwork.objects.all()
     serializer_class = SalesNetworkSerializer
     permission_classes = (IsActive,)
